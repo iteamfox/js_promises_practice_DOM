@@ -2,13 +2,13 @@
 
 const firstPromise = new Promise((resolve, reject) => {
   const timer = setTimeout(() => {
-    reject(new Error('First promise was resolved'));
+    reject(new Error('First promise was rejected'));
   }, 3000);
 
   document.addEventListener('click', (e) => {
     if (e.button === 0) {
       clearInterval(timer);
-      resolve('First promise was rejected');
+      resolve('First promise was resolved');
     }
   });
 });
@@ -44,12 +44,12 @@ const successHandler = (message) => {
   const div = document.createElement('div');
 
   div.setAttribute('data-qa', 'notification');
-  div.classList.add('sucsess');
+  div.classList.add('success');
   div.textContent = message;
   document.body.appendChild(div);
 };
 
-const errorHundler = (error) => {
+const errorHandler = (error) => {
   const div = document.createElement('div');
 
   div.setAttribute('data-qa', 'notification');
@@ -58,6 +58,6 @@ const errorHundler = (error) => {
   document.body.appendChild(div);
 };
 
-firstPromise.then(successHandler).catch(errorHundler);
+firstPromise.then(successHandler).catch(errorHandler);
 secondPromise.then(successHandler);
-thirdPromise.then(successHandler).catch(errorHundler);
+thirdPromise.then(successHandler).catch(errorHandler);
